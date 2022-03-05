@@ -35,13 +35,80 @@ namespace LibApp.Models
                 {
                     context.Books.AddRange(
                         // Generate 10 books with random data for testing purposes 
-                        new Book {
-                    G
-                    Title = "The Lord of the Rings",
-                    Author = "J.R.R. Tolkien"
-        
-                    );
+                        new Book
+                        {
+                            GenreId = 1,
+                            Name = "The Hunger Games",
+                            AuthorName = "Suzanne Collins",
+                            ReleaseDate = DateTime.Parse("15/01/2012"),
+                            DateAdded = DateTime.Now,
+                            NumberInStock = 2
+                        },
+                new Book
+                {
+                    GenreId = 2,
+                    Name = "The Martian",
+                    AuthorName = "Andy Weir",
+                    ReleaseDate = DateTime.Parse("10/02/2012"),
+                    DateAdded = DateTime.Now,
+                    NumberInStock = 5
+                },
+                new Book
+                {
+                    GenreId = 3,
+                    Name = "The Hobbit",
+                    AuthorName = "J.R.R. Tolkien",
+                    ReleaseDate = DateTime.Parse("10/04/2012"),
+                    DateAdded = DateTime.Now,
+                    NumberInStock = 8
+                },
+                new Book
+                {
+                    GenreId = 4,
+                    Name = "The Fault in our Stars",
+                    AuthorName = "John Green",
+                    ReleaseDate = DateTime.Parse("21/01/2014"),
+                    DateAdded = DateTime.Now,
+                    NumberInStock = 3
+                },
+                new Book
+                {
+                    GenreId = 5,
+                    Name = "The Book Thief",
+                    AuthorName = "Markus Zusak",
+                    ReleaseDate = DateTime.Parse("15/01/2002"),
+                    DateAdded = DateTime.Now,
+                    NumberInStock = 12
+                },
+                new Book
+                {
+                    GenreId = 6,
+                    Name = "The Chronicles of Narnia",
+                    AuthorName = "C.S. Lewis",
+                    ReleaseDate = DateTime.Parse("12/01/2011"),
+                    DateAdded = DateTime.Now,
+                    NumberInStock = 16
+                },
+                new Book
+                {
+                    GenreId = 7,
+                    Name = "The Lion, the Witch and the Wardrobe",
+                    AuthorName = "C.S. Lewis",
+                    ReleaseDate = DateTime.Parse("10/01/2014"),
+                    DateAdded = DateTime.Now,
+                    NumberInStock = 12
+                },
+                new Book
+                {
+                    GenreId = 8,
+                    Name = "The Chronicles of Narnia: Prince Caspian",
+                    AuthorName = "C.S. Lewis",
+                    ReleaseDate = DateTime.Parse("10/05/2012"),
+                    DateAdded = DateTime.Now,
+                    NumberInStock = 5
+                });
                 }
+
 
                 private static void SeedGenres(ApplicationDbContext context)
                 {
@@ -203,6 +270,8 @@ namespace LibApp.Models
 
                     context.SaveChanges();
                 }
+            }
         }
-    }
 }
+
+

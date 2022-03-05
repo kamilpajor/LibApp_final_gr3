@@ -1,5 +1,6 @@
 using LibApp.Data;
 using LibApp.Interfaces;
+using LibApp.Models;
 using LibApp.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,8 @@ namespace LibApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var authenticationSettings = new AuthenticationSettings();
+            Configuration.GetSection("Authentication").Bind(authenticationSettings);
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -32,7 +35,8 @@ namespace LibApp
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Customer>(options => { options.SignIn.RequireConfirmedAccount = true; })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.Add(new ServiceDescriptor(typeof(IBookRepository), typeof(BookRepository), ServiceLifetime.Scoped));
             services.Add(new ServiceDescriptor(typeof(IGenreRepository), typeof(GenreRepository), ServiceLifetime.Scoped));
