@@ -1,17 +1,15 @@
 using LibApp.Data;
+using LibApp.Interfaces;
+using LibApp.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace LibApp
 {
@@ -36,6 +34,10 @@ namespace LibApp
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.Add(new ServiceDescriptor(typeof(IBookRepository), typeof(BookRepository), ServiceLifetime.Scoped));
+            services.Add(new ServiceDescriptor(typeof(IGenreRepository), typeof(GenreRepository), ServiceLifetime.Scoped));
+            services.Add(new ServiceDescriptor(typeof(IMembershipTypeRepository), typeof(MembershipTypeRepository), ServiceLifetime.Scoped));
+            services.Add(new ServiceDescriptor(typeof(ICustomerRepository), typeof(CustomerRepository), ServiceLifetime.Scoped));
             services.AddControllersWithViews();
         }
 
