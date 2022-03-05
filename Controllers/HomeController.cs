@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,15 +11,14 @@ using System.Threading.Tasks;
 
 namespace LibApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IMemoryCache _memoryCache;
 
-        public HomeController(ILogger<HomeController> logger, IMemoryCache memoryCache)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _memoryCache = memoryCache;
         }
 
         public IActionResult Index()
